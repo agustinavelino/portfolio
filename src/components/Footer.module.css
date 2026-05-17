@@ -1,0 +1,40 @@
+.footer {
+  border-top: 1px solid #e5e5e5;
+  padding: 28px 24px;
+}
+
+.inner {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left {
+  font-size: 13px;
+  color: #999999;
+}
+
+.right {
+  display: flex;
+  gap: 20px;
+}
+
+.right a {
+  font-size: 13px;
+  color: #999999;
+  transition: color 0.15s ease;
+}
+
+.right a:hover {
+  color: #111111;
+}
+
+@media (max-width: 480px) {
+  .inner {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+}

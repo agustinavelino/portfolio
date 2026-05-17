@@ -1,0 +1,24 @@
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.emailLink {
+  font-size: 15px;
+  color: #111111;
+  font-weight: 500;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 4px;
+  width: fit-content;
+  transition: border-color 0.15s ease;
+}
+
+.emailLink:hover {
+  border-color: #111111;
+}
+
+.social {
+  display: flex;
+  gap: 10px;
+}
