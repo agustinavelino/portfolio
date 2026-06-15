@@ -1,9 +1,10 @@
 import { useScrollFadeIn } from '../hooks/useScrollFadeIn'
-import { experience } from '../data/content'
+import { useLanguage } from '../contexts/LanguageContext'
 import styles from './Experience.module.css'
 
 export default function Experience() {
   const ref = useScrollFadeIn()
+  const { content: { experience } } = useLanguage()
 
   return (
     <section id="experience" className="section">
@@ -19,7 +20,11 @@ export default function Experience() {
                 </div>
                 <span className={styles.period}>{item.period}</span>
               </div>
-              <p className={styles.description}>{item.description}</p>
+              <ul className={styles.bullets}>
+                {item.description.map((point, j) => (
+                  <li key={j}>{point}</li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>

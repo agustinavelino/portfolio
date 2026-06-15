@@ -1,9 +1,13 @@
+import { useState } from 'react'
 import { useScrollFadeIn } from '../hooks/useScrollFadeIn'
-import { projects } from '../data/content'
+import { useLanguage } from '../contexts/LanguageContext'
 import styles from './Projects.module.css'
+import ProjectModal from './ProjectModal'
 
 export default function Projects() {
   const ref = useScrollFadeIn()
+  const [selected, setSelected] = useState(null)
+  const { content: { projects, ui } } = useLanguage()
 
   return (
     <section id="projects" className="section">
@@ -13,7 +17,10 @@ export default function Projects() {
           {projects.map((project) => (
             <article key={project.title} className={styles.card}>
               <div className={styles.imagePlaceholder}>
-                <span>imagen del proyecto</span>
+                {project.image
+                  ? <img src={project.image} alt={project.title} className={styles.cardImage} />
+                  : <span>imagen del proyecto</span>
+                }
               </div>
               <div className={styles.body}>
                 <h3 className={styles.title}>{project.title}</h3>
@@ -25,21 +32,35 @@ export default function Projects() {
                     </span>
                   ))}
                 </div>
-                {project.github && (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.link}
-                  >
-                    GitHub →
-                  </a>
-                )}
+                <div className={styles.actions}>
+                  {project.details && (
+                    <button
+                      className={`btn btn-ghost ${styles.detailsBtn}`}
+                      onClick={() => setSelected(project)}
+                    >
+                      {ui.projects.viewMore}
+                    </button>
+                  )}
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.link}
+                    >
+                      GitHub →
+                    </a>
+                  )}
+                </div>
               </div>
             </article>
           ))}
         </div>
       </div>
+
+      {selected && (
+        <ProjectModal project={selected} onClose={() => setSelected(null)} />
+      )}
     </section>
   )
 }

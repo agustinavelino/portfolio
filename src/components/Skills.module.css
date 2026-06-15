@@ -1,25 +1,88 @@
+/* Certifications */
+.certGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.certCard {
+  border: 1px solid #2a2a2a;
+  border-radius: 10px;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 200px;
+}
+
+.certName {
+  font-size: 15px;
+  font-weight: 600;
+  color: #f0f0f0;
+}
+
+.certMeta {
+  font-size: 12px;
+  color: #888;
+}
+
+.certLink {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #aaa;
+  text-decoration: none;
+}
+
+.certLink:hover {
+  color: #f0f0f0;
+}
+
+/* Skills (subdued) */
+.skillsBlock {
+  border-top: 1px solid #1e1e1e;
+  padding-top: 32px;
+}
+
+.skillsLabel {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #555;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
 .grid {
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 20px;
 }
 
 .category {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .catLabel {
-  font-size: 11px;
+  font-size: 10px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #999999;
+  color: #555;
   font-weight: 500;
 }
 
 .pills {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
+}
+
+.pill {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid #2a2a2a;
+  color: #666;
 }

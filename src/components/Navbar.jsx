@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { personalInfo } from '../data/content'
+import { useLanguage } from '../contexts/LanguageContext'
 import styles from './Navbar.module.css'
 
 const navLinks = [
@@ -13,6 +13,7 @@ const navLinks = [
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const { lang, toggleLang, content: { personalInfo } } = useLanguage()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10)
@@ -39,15 +40,23 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <button
-          className={styles.hamburger}
-          onClick={() => setMenuOpen((v) => !v)}
-          aria-label="Toggle menu"
-        >
-          <span />
-          <span />
-          <span />
-        </button>
+        <div className={styles.right}>
+          <button className={styles.langToggle} onClick={toggleLang} aria-label="Cambiar idioma">
+            <span className={lang === 'es' ? styles.activeLang : ''}>ES</span>
+            <span className={styles.langDivider}>·</span>
+            <span className={lang === 'en' ? styles.activeLang : ''}>EN</span>
+          </button>
+
+          <button
+            className={styles.hamburger}
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label="Toggle menu"
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+        </div>
       </div>
     </header>
   )

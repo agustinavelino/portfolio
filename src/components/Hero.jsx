@@ -1,7 +1,8 @@
-import { personalInfo } from '../data/content'
+import { useLanguage } from '../contexts/LanguageContext'
 import styles from './Hero.module.css'
 
 export default function Hero() {
+  const { content: { personalInfo, ui } } = useLanguage()
   const scrollTo = (id) => document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' })
 
   return (
@@ -9,18 +10,18 @@ export default function Hero() {
       <div className={styles.content}>
         <div className={styles.text}>
           <span className={styles.tag}>{personalInfo.title}</span>
-          <h1 className={styles.title}>Hola, soy {personalInfo.name}.</h1>
+          <h1 className={styles.title}>{ui.hero.greeting} {personalInfo.name}.</h1>
           <p className={styles.bio}>{personalInfo.bio}</p>
           <div className={styles.actions}>
             <button className="btn" onClick={() => scrollTo('#projects')}>
-              Ver proyectos
+              {ui.hero.viewProjects}
             </button>
             <button className="btn btn-ghost" onClick={() => scrollTo('#contact')}>
-              Contacto
+              {ui.hero.contact}
             </button>
             {personalInfo.cv ? (
               <a href={personalInfo.cv} download className={`btn ${styles.cvBtn}`}>
-                Descargar CV
+                {ui.hero.downloadCV}
               </a>
             ) : (
               <span className={styles.cvPlaceholder}>

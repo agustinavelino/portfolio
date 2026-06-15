@@ -1,9 +1,10 @@
 import { useScrollFadeIn } from '../hooks/useScrollFadeIn'
-import { education } from '../data/content'
+import { useLanguage } from '../contexts/LanguageContext'
 import styles from './Education.module.css'
 
 export default function Education() {
   const ref = useScrollFadeIn()
+  const { content: { education } } = useLanguage()
 
   return (
     <section id="education" className="section">
@@ -20,7 +21,11 @@ export default function Education() {
                 <span className={styles.period}>{item.period}</span>
               </div>
               {item.description && (
-                <p className={styles.description}>{item.description}</p>
+                <ul className={styles.bullets}>
+                  {item.description.map((point, j) => (
+                    <li key={j}>{point}</li>
+                  ))}
+                </ul>
               )}
             </div>
           ))}
