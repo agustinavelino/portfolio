@@ -9,7 +9,7 @@ export const personalInfo = {
   github: "https://github.com/agustinavelino",
   linkedin: "https://www.linkedin.com/in/avelino-pineda-agust%C3%ADn-al%C3%AD-9bb188365/",
   photo: "/images/imagen1.jpeg",
-  cv: "cv_agustin_avelino_en.pdf",
+  cv: "CV_Agustin_Avelino_Pineda_EN.pdf",
 };
 
 export const certifications = [
