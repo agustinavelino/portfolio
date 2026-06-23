@@ -30,23 +30,6 @@ export const skills = {
 
 export const projects = [
   {
-    title: "Reaction Board for American Football Wide Receivers",
-    description: "Interactive board with an Arduino-controlled LED matrix to train wide receivers, measuring and improving their reaction time in the field.",
-    details: [
-      "The American football team needed a training tool to work on their receivers' reaction time and decision-making. I designed and built a board with 16 LED panels that light up in random sequences; the player must touch the correct panel as quickly as possible.",
-      "The system combines custom hardware (LED circuit, buttons, and wiring soldered on stripboard) with Arduino programming for game logic and time logging via a display.",
-      "The main challenge was robustness under heavy physical use: false contacts from rapid prototyping forced me to migrate to permanent soldering and implement series resistors to stabilize the battery supply. The result is a portable, organized, field-proof system.",
-    ],
-    highlights: [
-      "Circuit soldered on stripboard with power management for 16 LED buttons",
-      "Random sequence logic and time logging on Arduino",
-      "Python interface with per-session performance metrics",
-    ],
-    tags: ["Arduino", "C++"],
-    github: "https://github.com/agustinavelino/tablero_receptores",
-    image: "/images/tablero.jpeg",
-  },
-  {
     title: "Design and Implementation of an AGV (Automated Guided Vehicle)",
     description: "Design and construction of an autonomous Arduino Uno-based AGV capable of following a predefined route, detecting loading/unloading stations, and operating a lifting mechanism to transport materials without human intervention.",
     details: [
@@ -62,6 +45,23 @@ export const projects = [
     tags: ["SolidWorks", "Control PID", "I2C", "Arduino"],
     github: "",
     image: "/images/robot.jpeg",
+  },
+  {
+    title: "Reaction Board for American Football Wide Receivers",
+    description: "Interactive board with an Arduino-controlled LED matrix to train wide receivers, measuring and improving their reaction time in the field.",
+    details: [
+      "The American football team needed a training tool to work on their receivers' reaction time and decision-making. I designed and built a board with 16 LED panels that light up in random sequences; the player must touch the correct panel as quickly as possible.",
+      "The system combines custom hardware (LED circuit, buttons, and wiring soldered on stripboard) with Arduino programming for game logic and time logging via a display.",
+      "The main challenge was robustness under heavy physical use: false contacts from rapid prototyping forced me to migrate to permanent soldering and implement series resistors to stabilize the battery supply. The result is a portable, organized, field-proof system.",
+    ],
+    highlights: [
+      "Circuit soldered on stripboard with power management for 16 LED buttons",
+      "Random sequence logic and time logging on Arduino",
+      "Python interface with per-session performance metrics",
+    ],
+    tags: ["Arduino", "C++"],
+    github: "https://github.com/agustinavelino/tablero_receptores",
+    image: "/images/tablero.jpeg",
   },
   {
     title: "Voice Chatbot with Conversation Analytics",

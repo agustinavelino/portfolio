@@ -30,23 +30,6 @@ export const skills = {
 
 export const projects = [
   {
-    title: "Tablero de reacción para receptores de fútbol americano",
-    description: "Tablero interactivo con matriz de LEDs controlada por Arduino para entrenar receptores de un equipo de fútbol americano, midiendo y mejorando su tiempo de reacción en campo.",
-    details: [
-      "El equipo de fútbol americano necesitaba una herramienta de entrenamiento para trabajar el tiempo de reacción y la toma de decisiones de sus receptores. Diseñé y construí un tablero con 16 paneles LED que se iluminan en secuencias aleatorias; el jugador debe tocar el panel correcto lo más rápido posible.",
-      "El sistema combina hardware propio (circuito de LEDs, botoneras y cableado soldado en stripboard) con programación en Arduino para la lógica de juego y registro de tiempos mediante una pantalla.",
-      "El principal reto fue la robustez ante el uso físico intensivo: los falsos contactos del prototipado rápido me obligaron a migrar a soldadura permanente e implementar resistencias en serie para estabilizar la alimentación de la batería. El resultado es un sistema portátil, ordenado y sin fallos en campo.",
-    ],
-    highlights: [
-      "Circuito soldado en stripboard con gestión de alimentación para 16 botones LED",
-      "Lógica de secuencias aleatorias y registro de tiempos en Arduino",
-      "Interfaz Python con métricas de rendimiento por sesión",
-    ],
-    tags: ["Arduino", "C++"],
-    github: "https://github.com/agustinavelino/tablero_receptores",
-    image: "/images/tablero.jpeg",
-  },
-  {
     title: "Implementación y diseño de un AGV (Automated Guided Vehicle)",
     description: "Diseño y construcción de un AGV autónomo basado en Arduino Uno, capaz de seguir una ruta predefinida, detectar estaciones de carga/descarga y operar un mecanismo de elevación para transportar materiales sin intervención humana.",
     details: [
@@ -62,6 +45,23 @@ export const projects = [
     tags: ["SolidWorks", "Control PID", "I2C", "Arduino"],
     github: "",
     image: "/images/robot.jpeg",
+  },
+  {
+    title: "Tablero de reacción para receptores de fútbol americano",
+    description: "Tablero interactivo con matriz de LEDs controlada por Arduino para entrenar receptores de un equipo de fútbol americano, midiendo y mejorando su tiempo de reacción en campo.",
+    details: [
+      "El equipo de fútbol americano necesitaba una herramienta de entrenamiento para trabajar el tiempo de reacción y la toma de decisiones de sus receptores. Diseñé y construí un tablero con 16 paneles LED que se iluminan en secuencias aleatorias; el jugador debe tocar el panel correcto lo más rápido posible.",
+      "El sistema combina hardware propio (circuito de LEDs, botoneras y cableado soldado en stripboard) con programación en Arduino para la lógica de juego y registro de tiempos mediante una pantalla.",
+      "El principal reto fue la robustez ante el uso físico intensivo: los falsos contactos del prototipado rápido me obligaron a migrar a soldadura permanente e implementar resistencias en serie para estabilizar la alimentación de la batería. El resultado es un sistema portátil, ordenado y sin fallos en campo.",
+    ],
+    highlights: [
+      "Circuito soldado en stripboard con gestión de alimentación para 16 botones LED",
+      "Lógica de secuencias aleatorias y registro de tiempos en Arduino",
+      "Interfaz Python con métricas de rendimiento por sesión",
+    ],
+    tags: ["Arduino", "C++"],
+    github: "https://github.com/agustinavelino/tablero_receptores",
+    image: "/images/tablero.jpeg",
   },
   {
     title: "Chatbot de voz con análisis de conversaciones",
