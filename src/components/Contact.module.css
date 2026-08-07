@@ -1,24 +1,33 @@
-.links {
+.body {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  align-items: flex-start;
+  gap: 28px;
 }
 
 .emailLink {
-  font-size: 15px;
-  color: #111111;
-  font-weight: 500;
-  border-bottom: 1px solid #e5e5e5;
-  padding-bottom: 4px;
-  width: fit-content;
-  transition: border-color 0.15s ease;
+  font-size: clamp(19px, 3.4vw, 38px);
+  font-weight: 600;
+  font-variation-settings: 'wdth' 110;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  color: var(--ink);
+  overflow-wrap: break-word;
+  max-width: 100%;
+  background-image: linear-gradient(var(--signal), var(--signal));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 2px;
+  padding-bottom: 6px;
+  transition: background-size 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 .emailLink:hover {
-  border-color: #111111;
+  background-size: 100% 40%;
 }
 
 .social {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 }

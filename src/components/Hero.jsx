@@ -10,34 +10,26 @@ export default function Hero() {
       <div className={styles.content}>
         <div className={styles.text}>
           <span className={styles.tag}>{personalInfo.title}</span>
-          <h1 className={styles.title}>{ui.hero.greeting} {personalInfo.name}.</h1>
+          <h1 className={styles.title}>{personalInfo.name}</h1>
           <p className={styles.bio}>{personalInfo.bio}</p>
           <div className={styles.actions}>
-            <button className="btn" onClick={() => scrollTo('#projects')}>
+            <button className="btn btn-primary" onClick={() => scrollTo('#projects')}>
               {ui.hero.viewProjects}
             </button>
-            <button className="btn btn-ghost" onClick={() => scrollTo('#contact')}>
+            <button className="btn" onClick={() => scrollTo('#contact')}>
               {ui.hero.contact}
             </button>
-            {personalInfo.cv ? (
-              <a href={personalInfo.cv} download className={`btn ${styles.cvBtn}`}>
+            {personalInfo.cv && (
+              <a href={personalInfo.cv} download className="btn btn-ghost">
                 {ui.hero.downloadCV}
               </a>
-            ) : (
-              <span className={styles.cvPlaceholder}>
-                [Agrega tu CV en content.js]
-              </span>
             )}
           </div>
         </div>
 
         <div className={styles.photoWrapper}>
           {personalInfo.photo ? (
-            <img
-              src={personalInfo.photo}
-              alt={personalInfo.name}
-              className={styles.photo}
-            />
+            <img src={personalInfo.photo} alt={personalInfo.name} className={styles.photo} />
           ) : (
             <div className={styles.photoPlaceholder}>
               <span>Tu foto</span>

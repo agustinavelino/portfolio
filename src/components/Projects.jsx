@@ -11,15 +11,21 @@ export default function Projects() {
 
   return (
     <section id="projects" className="section">
-      <div ref={ref} className="fade-in">
-        <p className="section-label">Projects</p>
+      <div ref={ref} className="section-grid fade-in">
+        <div className="rail">
+          <p className="section-label">Projects</p>
+        </div>
+
         <div className={styles.grid}>
-          {projects.map((project) => (
-            <article key={project.title} className={styles.card}>
-              <div className={styles.imagePlaceholder}>
+          {projects.map((project, i) => (
+            <article
+              key={project.title}
+              className={`${styles.card} ${i === 0 ? styles.featured : ''}`}
+            >
+              <div className={styles.media}>
                 {project.image
-                  ? <img src={project.image} alt={project.title} className={styles.cardImage} />
-                  : <span>imagen del proyecto</span>
+                  ? <img src={project.image} alt={project.title} className={styles.image} />
+                  : <span className={styles.imageEmpty}>Sin imagen</span>
                 }
               </div>
               <div className={styles.body}>
@@ -35,7 +41,7 @@ export default function Projects() {
                 <div className={styles.actions}>
                   {project.details && (
                     <button
-                      className={`btn btn-ghost ${styles.detailsBtn}`}
+                      className={`btn ${styles.detailsBtn}`}
                       onClick={() => setSelected(project)}
                     >
                       {ui.projects.viewMore}
@@ -48,7 +54,7 @@ export default function Projects() {
                       rel="noopener noreferrer"
                       className={styles.link}
                     >
-                      GitHub →
+                      GitHub ↗
                     </a>
                   )}
                 </div>

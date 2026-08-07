@@ -8,11 +8,13 @@ export default function Education() {
 
   return (
     <section id="education" className="section">
-      <div ref={ref} className="fade-in">
-        <p className="section-label">Education</p>
+      <div ref={ref} className="section-grid fade-in">
+        <div className="rail">
+          <p className="section-label">Education</p>
+        </div>
         <div className={styles.list}>
           {education.map((item, i) => (
-            <div key={i} className={styles.item}>
+            <article key={i} className={styles.item}>
               <div className={styles.header}>
                 <div>
                   <h3 className={styles.degree}>{item.degree}</h3>
@@ -27,7 +29,7 @@ export default function Education() {
                   ))}
                 </ul>
               )}
-            </div>
+            </article>
           ))}
         </div>
       </div>

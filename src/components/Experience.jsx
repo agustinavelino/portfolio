@@ -8,11 +8,13 @@ export default function Experience() {
 
   return (
     <section id="experience" className="section">
-      <div ref={ref} className="fade-in">
-        <p className="section-label">Experience</p>
+      <div ref={ref} className="section-grid fade-in">
+        <div className="rail">
+          <p className="section-label">Experience</p>
+        </div>
         <div className={styles.list}>
           {experience.map((item, i) => (
-            <div key={i} className={styles.item}>
+            <article key={i} className={styles.item}>
               <div className={styles.header}>
                 <div>
                   <h3 className={styles.role}>{item.role}</h3>
@@ -25,7 +27,7 @@ export default function Experience() {
                   <li key={j}>{point}</li>
                 ))}
               </ul>
-            </div>
+            </article>
           ))}
         </div>
       </div>

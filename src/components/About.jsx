@@ -8,11 +8,15 @@ export default function About() {
 
   return (
     <section id="about" className="section">
-      <div ref={ref} className="fade-in">
-        <p className="section-label">About</p>
-        {personalInfo.about.map((paragraph, i) => (
-          <p key={i} className={styles.text}>{paragraph}</p>
-        ))}
+      <div ref={ref} className="section-grid fade-in">
+        <div className="rail">
+          <p className="section-label">About</p>
+        </div>
+        <div>
+          {personalInfo.about.map((paragraph, i) => (
+            <p key={i} className={styles.text}>{paragraph}</p>
+          ))}
+        </div>
       </div>
     </section>
   )

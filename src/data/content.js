@@ -1,13 +1,14 @@
 export const personalInfo = {
   name: "Agustín Avelino Pineda",
   title: "Estudiante de Ingeniería en Mecatrónica",
-  bio: "Estudiante de ingeniería mecatrónica",
+  bio: "Diseño el hardware y escribo el firmware que lo mueve. Especializado en sistemas embebidos y electrónica de potencia: lideré el área de electrónica de un kart de competencia de 51.2 V/300 A y desarrollé el firmware completo de un AGV autónomo.",
   about: [
-    "Estudiante de Ingeniería en Mecatrónica con una sólida base en desarrollo de software desde mi formación técnica. Me apasiona la convergencia entre el código, la electrónica de potencia y el diseño mecánico. Enfocado en resolver problemas complejos mediante soluciones creativas y con experiencia liderando equipos técnicos en proyectos de alta exigencia.",
+    "Estudiante de Ingeniería en Mecatrónica con una base sólida en desarrollo de software desde mi formación técnica en el IPN. Trabajo en la convergencia del código, la electrónica de potencia y el diseño mecánico: sistemas de alta potencia, firmware para robots autónomos y piezas que tienen que sobrevivir una competencia.",
+    "En Omega Lightning, la escudería estudiantil del Tec de Monterrey, pasé de co-líder a líder del área de electrónica, coordinando a un equipo de cuatro personas bajo plazos de competencia.",
   ],
   email: "avelino.pineda.agustin@gmail.com",
   github: "https://github.com/agustinavelino",
-  linkedin: "https://www.linkedin.com/in/avelino-pineda-agust%C3%ADn-al%C3%AD-9bb188365/",
+  linkedin: "https://www.linkedin.com/in/agustin-avelino",
   photo: "/images/imagen1.jpeg",
   cv: "CV_Agustin_Avelino_Pineda_ES.pdf",
 };
@@ -22,15 +23,17 @@ export const certifications = [
 ];
 
 export const skills = {
-  programacion: ["Python", "C++", "MATLAB"],
-  hardware: ["Arduino", "Raspberry Pi", "Esp32"],
+  programacion: ["C++", "Python", "MATLAB"],
+  hardware: ["Arduino", "ESP32", "Raspberry Pi"],
   disenio: ["SolidWorks", "NX Siemens"],
-  otros: [ "ROS", "Git", "Linux", "Fundamentos de análisis de datos"],
+  laboratorio: ["Soldadura", "Integración de sistemas electrónicos"],
+  otros: ["Git / GitHub", "Linux", "ROS", "Fundamentos de análisis de datos"],
+  idiomas: ["Español (nativo)", "Inglés (avanzado)"],
 };
 
 export const projects = [
   {
-    title: "Implementación y diseño de un AGV (Automated Guided Vehicle)",
+    title: "AGV sigue-líneas con sistema de carga/descarga",
     description: "Diseño y construcción de un AGV autónomo basado en Arduino Uno, capaz de seguir una ruta predefinida, detectar estaciones de carga/descarga y operar un mecanismo de elevación para transportar materiales sin intervención humana.",
     details: [
       "Este proyecto consistió en el diseño y construcción de un AGV (Automated Guided Vehicle) basado en Arduino Uno, capaz de seguir una ruta predefinida de forma autónoma, detectar estaciones de carga/descarga a lo largo del recorrido y operar un mecanismo de elevación para transportar materiales sin intervención humana. El objetivo era integrar control de movimiento, sensórica y mecanismos en una sola plataforma funcional, replicando a pequeña escala el funcionamiento de un AGV industrial.",
@@ -38,11 +41,13 @@ export const projects = [
       "El resultado es un AGV funcional que recorre la ruta de forma estable, identifica estaciones de carga/descarga y ejecuta el ciclo completo de levantar, transportar y depositar material, ajustando su comportamiento dinámicamente según el peso detectado. Más allá del resultado final, el proyecto representó un ejercicio iterativo de depuración y sintonización de un sistema de control real, identificando y corrigiendo problemas típicos de sistemas embebidos: ruido de sensores, saturación de actuadores, condiciones de carrera lógicas y calibración de hardware.",
     ],
     highlights: [
-      "Sistema de carga/descarga automatizado con mecanismo de elevación por motor a pasos",
-      "Arquitectura I2C compacta (expansor de E/S + pantalla OLED)",
-      "Monitoreo de velocidad (RPM) mediante encoders de cuadratura",
+      "Controlador PD con zona muerta y filtro de suavizado exponencial sobre la señal PWM",
+      "Celda de carga HX711 con filtro de Kalman y encoders de cuadratura de 494 PPR",
+      "Motor a pasos TMC2209 para el mecanismo de elevación automatizado",
+      "Arquitectura I2C a 400 kHz con expansor PCF8574 y pantalla OLED sobre el mismo bus",
+      "Más de 20 versiones de firmware hasta lograr navegación estable y recuperación ante pérdida de trayectoria",
     ],
-    tags: ["SolidWorks", "Control PID", "I2C", "Arduino"],
+    tags: ["C++", "Control PD", "SolidWorks", "I2C"],
     github: "",
     image: "/images/robot.jpeg",
   },
@@ -84,34 +89,50 @@ export const projects = [
 
 export const education = [
   {
-    degree: "Ingeniero en Mecatrónica",
-    institution: "Tecnológico de Monterrey",
-    period: "2024 – 2028",
-    description: ["Enfoque técnico: Sistemas embebidos, microcontroladores, control y diseño mecánico.",
-      "Proyectos relevantes: Implementación del sistema eléctrico y de control para el monoplaza de Electratón, y diseño e integración de sensores para un AGV",
-      "Habilidades clave: Modelado y simulación de ensambles complejos en SolidWorks; programación de microcontroladores (ESP32/Arduino)."
+    degree: "Ingeniería en Mecatrónica",
+    institution: "Tecnológico de Monterrey, Campus Santa Fe",
+    period: "2024 — 2028",
+    description: [
+      "Enfoque técnico: sistemas embebidos, microcontroladores, control y diseño mecánico.",
+      "Proyectos: sistema eléctrico de un kart de competencia de 51.2 V/300 A y firmware completo de un AGV autónomo.",
+      "Herramientas: modelado y simulación de ensambles en SolidWorks y NX; programación de microcontroladores (ESP32/Arduino).",
+      "Graduación esperada: agosto de 2028.",
     ],
   },
   {
     degree: "Técnico en Programación",
-    institution: "Instituto Politécnico Nacional",
-    period: "2021 – 2024",
-    description: ["Bases de software: Sólido trasfondo en lógica de programación, Estructuras de Datos y Programación Orientada a Objetos (POO).",
-      "Lenguajes dominados: Experiencia en el desarrollo de aplicaciones y gestión de bases de datos utilizando lenguajes como Java y Python.",
-      "Logro clave: Aplicación de metodologías de software para el diseño de sistemas funcionales y proyectos de egreso locales."
+    institution: "CECyT 9 «Juan de Dios Bátiz» — IPN",
+    period: "2021 — 2025",
+    description: [
+      "Bases de software: lógica de programación, estructuras de datos y programación orientada a objetos.",
+      "Lenguajes: desarrollo de aplicaciones y gestión de bases de datos con Java y Python.",
+      "Título obtenido en marzo de 2025.",
     ],
   },
 ];
 
 export const experience = [
   {
-    role: "Líder área de electrónica",
-    institution: "Tecnológico de Monterrey - Omega Lightning",
-    period: "[2026 – presente]",
-    description: ["Diseño e integración de sistemas eléctricos y de control para el vehículo eléctrico de competencia de la escudería.",
-      "Gestión del sistema de alta potencia (baterías y controladores de motor), garantizando la seguridad eléctrica y eficiencia energética.",
-      "Liderazgo de un equipo técnico de estudiantes, coordinando tiempos de entrega y asegurando estándares de calidad para las competencias",]
-  }
+    role: "Líder, Área de Electrónica",
+    institution: "Omega Lightning · Escudería estudiantil, Tecnológico de Monterrey",
+    period: "Feb 2026 — Ago 2026",
+    description: [
+      "Lideré el desarrollo del sistema eléctrico de un kart de competencia de 51.2 V/300 A, tomando las decisiones de especificación de componentes y coordinando a 4 personas bajo plazos de competencia.",
+      "Rediseñé el cableado del kart (calibre 3/0 a 6 AWG de silicona) tras un análisis de componentes, reduciendo peso con la selección correcta de especificaciones.",
+      "Diseñé en SolidWorks y fabriqué una carcasa hermética para proteger componentes, e implementé el sistema Safe-to-Touch para aislar eléctricamente el chasis en alta potencia (51.2 V/300 A pico).",
+      "Integré paneles solares para la carga autónoma del sistema eléctrico secundario —iluminación, audio y protección, independiente del sistema de potencia del motor— y desarrollé un sistema de audio adaptativo a la velocidad que mejora la seguridad peatonal en pits.",
+    ],
+  },
+  {
+    role: "Co-líder, Área de Electrónica",
+    institution: "Omega Lightning · Escudería estudiantil, Tecnológico de Monterrey",
+    period: "Ago 2025 — Dic 2025",
+    description: [
+      "Apoyé el diseño e integración del sistema eléctrico del kart, sentando las bases del proyecto que después dirigí.",
+      "Instalé el sistema de iluminación completo —luces delanteras, traseras y de freno— con arreglo en paralelo, garantizando 100% de redundancia lumínica ante fallas.",
+      "Colaboré en la integración de motor y baterías y en el desarrollo técnico general bajo plazos de competencia.",
+    ],
+  },
 ];
 
 export const ui = {
@@ -128,11 +149,14 @@ export const ui = {
   },
   skills: {
     verify: 'Verificar →',
+    certificationsLabel: 'Certificaciones',
     categories: [
       { key: 'programacion', label: 'Programación' },
       { key: 'hardware', label: 'Hardware / Embebidos' },
       { key: 'disenio', label: 'Diseño mecánico' },
+      { key: 'laboratorio', label: 'Laboratorio' },
       { key: 'otros', label: 'Otros' },
+      { key: 'idiomas', label: 'Idiomas' },
     ],
   },
 };
