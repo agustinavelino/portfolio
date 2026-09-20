@@ -9,7 +9,7 @@ export const personalInfo = {
   email: "avelino.pineda.agustin@gmail.com",
   github: "https://github.com/agustinavelino",
   linkedin: "https://www.linkedin.com/in/agustin-avelino",
-  photo: "/images/imagen1.jpeg",
+  photo: "/images/imagen1.webp",
   cv: "CV_Agustin_Avelino_Pineda_ES.pdf",
 };
 
@@ -90,7 +90,7 @@ export const projects = [
     ],
     tags: ["Flask", "SQLite", "OpenAI API"],
     github: "https://github.com/agustinavelino/chatbott",
-    image: "/images/chatbot.png",
+    image: "/images/chatbot.webp",
     gallery: [],
   },
  
@@ -155,6 +155,7 @@ export const ui = {
     toggleLanguage: 'Cambiar idioma',
     openMenu: 'Abrir menú',
     closeMenu: 'Cerrar menú',
+    skipToContent: 'Saltar al contenido',
   },
   projects: {
     viewMore: 'Ver más',

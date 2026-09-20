@@ -10,6 +10,7 @@ import {
 } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { cn } from '@/lib/utils'
+import { labelSignal } from '@/lib/styles'
 import { useOutsideClick } from '@/hooks/use-outside-click'
 
 /* ==========================================================================
@@ -230,7 +231,29 @@ export function Card({ card, index }: { card: CarouselCard; index: number }) {
     if (!open) return
 
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') handleClose()
+      if (e.key === 'Escape') {
+        handleClose()
+        return
+      }
+      // Trampa de foco: sin esto el tabulador se escapa a la página de detrás,
+      // que está oculta tras el velo pero sigue siendo navegable.
+      if (e.key !== 'Tab') return
+      const panel = containerRef.current
+      if (!panel) return
+      const focusables = panel.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])',
+      )
+      if (!focusables.length) return
+      const first = focusables[0]
+      const last = focusables[focusables.length - 1]
+      const activeEl = document.activeElement
+      if (e.shiftKey && (activeEl === first || !panel.contains(activeEl))) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && activeEl === last) {
+        e.preventDefault()
+        first.focus()
+      }
     }
     window.addEventListener('keydown', onKeyDown)
 
@@ -347,7 +370,7 @@ export function Card({ card, index }: { card: CarouselCard; index: number }) {
               <div className="flex-1 overflow-y-auto p-6 md:p-8">
                 <motion.p
                   layoutId={layoutId('category')}
-                  className="text-label font-semibold tracking-[0.14em] text-signal uppercase [font-variation-settings:'wdth'_88]"
+                  className={labelSignal}
                 >
                   {card.category}
                 </motion.p>
@@ -412,7 +435,7 @@ export function Card({ card, index }: { card: CarouselCard; index: number }) {
         <div className="relative z-10 w-full p-6 transition-transform duration-300 ease-out group-hover:-translate-y-1 md:p-8">
           <motion.p
             layoutId={layoutId('category')}
-            className="text-label font-semibold tracking-[0.14em] text-signal uppercase [font-variation-settings:'wdth'_88]"
+            className={labelSignal}
           >
             {card.category}
           </motion.p>

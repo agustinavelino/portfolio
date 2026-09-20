@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, type ReactNode } from 'react'
+import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
 import * as es from '../data/content'
 import * as en from '../data/content.en'
 
@@ -23,6 +23,12 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLang] = useState<Lang>('es')
   const content: Content = lang === 'es' ? es : en
   const toggleLang = () => setLang((l) => (l === 'es' ? 'en' : 'es'))
+
+  // Sin esto, un lector de pantalla leería el contenido en inglés con la
+  // pronunciación del idioma declarado en index.html.
+  useEffect(() => {
+    document.documentElement.lang = lang
+  }, [lang])
 
   return (
     <LanguageContext.Provider value={{ lang, toggleLang, content }}>
