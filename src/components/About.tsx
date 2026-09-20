@@ -7,8 +7,8 @@ export default function About() {
   } = useLanguage()
 
   return (
-    <Section id="about" label="About">
-      <div className="max-w-[58ch] space-y-[18px]">
+    <Section id="about" label="About" layout="centered">
+      <div className="space-y-[18px]">
         {personalInfo.about.map((paragraph, i) => (
           <p
             key={i}

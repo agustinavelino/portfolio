@@ -321,7 +321,22 @@ export function Card({ card, index }: { card: CarouselCard; index: number }) {
 
               {/* --- Columna de imagen --- */}
               <div className="flex shrink-0 flex-col md:h-full md:w-1/2">
-                <div className="relative h-56 overflow-hidden sm:h-72 md:h-auto md:flex-1">
+                {/* `object-contain` sobre el fondo base, no `object-cover`: la
+                    columna es alta y estrecha, y las imágenes técnicas
+                    (ruteado, visor 3D) son apaisadas — recortarlas se comía la
+                    mitad de la placa. Rotarlas dejaría las serigrafías de
+                    costado; mejor caben enteras y con la letra derecha. */}
+                <div className="relative h-56 overflow-hidden bg-base sm:h-72 md:h-auto md:flex-1">
+                  {/* Relleno de las bandas que deja `contain`: la misma imagen
+                      desenfocada y apagada. Es el archivo ya descargado, así
+                      que no cuesta una petición más. */}
+                  <img
+                    src={images[active]}
+                    alt=""
+                    aria-hidden="true"
+                    className="absolute inset-0 h-full w-full scale-110 object-cover opacity-20 blur-2xl"
+                  />
+
                   <AnimatePresence mode="popLayout" initial={false}>
                     <motion.img
                       key={images[active]}
@@ -331,7 +346,7 @@ export function Card({ card, index }: { card: CarouselCard; index: number }) {
                       initial={reduced || active === 0 ? false : { opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: reduced ? 0 : 0.2 }}
-                      className="absolute inset-0 h-full w-full object-cover"
+                      className="absolute inset-0 h-full w-full object-contain"
                     />
                   </AnimatePresence>
                 </div>

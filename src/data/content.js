@@ -1,10 +1,13 @@
 export const personalInfo = {
   name: "Agustín Avelino Pineda",
   title: "Estudiante de Ingeniería en Mecatrónica",
-  bio: "Diseño el hardware y escribo el firmware que lo mueve. Especializado en sistemas embebidos y electrónica de potencia: lideré el área de electrónica de un kart de competencia de 51.2 V/300 A y desarrollé el firmware completo de un AGV autónomo.",
+  
+  bio: "Diseño el hardware y escribo el firmware que lo mueve. Sistemas embebidos, electrónica de potencia e instrumentación analógica: lideré el área de electrónica de un kart de 51.2 V/300 A y desarrollé el firmware completo de un AGV autónomo.",
+  // Dos párrafos: es la voz de entrada al sitio, no el CV. El detalle de cada
+  // trabajo vive en Projects y Experience.
   about: [
-    "Estudiante de Ingeniería en Mecatrónica con una base sólida en desarrollo de software desde mi formación técnica en el IPN. Trabajo en la convergencia del código, la electrónica de potencia y el diseño mecánico: sistemas de alta potencia, firmware para robots autónomos y piezas que tienen que sobrevivir una competencia.",
-    "En Omega Lightning, la escudería estudiantil del Tec de Monterrey, pasé de co-líder a líder del área de electrónica, coordinando a un equipo de cuatro personas bajo plazos de competencia.",
+    "Estudiante de Ingeniería en Mecatrónica con una base sólida en software desde mi formación técnica en el IPN. Trabajo donde se cruzan el código, la electrónica y el diseño mecánico. En Omega Lightning, la escudería estudiantil del Tec de Monterrey, pasé de co-líder a líder del área de electrónica y me hice responsable del sistema eléctrico de 51.2 V/300 A del kart, coordinando a cuatro personas bajo plazos de competencia.",
+    "Mi trabajo más reciente fue la instrumentación de un deshidratador híbrido, resuelta sin microcontroladores: dos cadenas de sensores con amplificación de instrumentación y una PCB de dos caras trazada en KiCad. Me interesan la automatización, los sistemas automotrices y la robótica móvil, y busco prácticas donde pueda llevar un sistema desde el esquemático hasta el prototipo funcionando.",
   ],
   email: "avelino.pineda.agustin@gmail.com",
   github: "https://github.com/agustinavelino",
@@ -23,12 +26,12 @@ export const certifications = [
 ];
 
 export const skills = {
-  programacion: ["C++", "Python", "MATLAB"],
-  hardware: ["Arduino", "ESP32", "Raspberry Pi"],
+  programacion: ["C++", "Python", "Git / GitHub", "Linux"],
+  electronica: ["Diseño de PCB en KiCad", "Acondicionamiento de señal", "Electrónica de potencia", "Arduino", "I2C / PWM"],
+  control: ["Control PD / PID", "Filtro de Kalman", "Instrumentación (PT100, AD620)", "Depuración y sintonización de firmware"],
   disenio: ["SolidWorks", "NX Siemens"],
-  laboratorio: ["Soldadura", "Integración de sistemas electrónicos"],
-  otros: ["Git / GitHub", "Linux", "ROS", "Fundamentos de análisis de datos"],
-  idiomas: ["Español (nativo)", "Inglés (avanzado)"],
+  laboratorio: ["Soldadura", "Integración de sistemas electrónicos", "Diagnóstico con multímetro y osciloscopio"],
+  idiomas: ["Español", "Inglés (avanzado)"],
 };
 
 export const projects = [
@@ -45,12 +48,36 @@ export const projects = [
       "PWM a 151 Hz sobre extractor de 302 mA: el MOSFET disipa 2 mW en lugar de 1.8 W",
       "Pack 3S de 4000 mAh con 15 h de autonomía; sigue midiendo y ventilando sin red",
       "Una resistencia de 1 kΩ a tierra corrigió el hundimiento de corriente del LM324 a 0.80 V",
-      "PCB de dos caras, 150×100 mm y ~75 componentes THT trazada en KiCad",
+      "PCB de dos caras, 150×100 mm y 74 componentes THT trazada en KiCad",
     ],
     tags: ["KiCad", "Acondicionamiento de señal", "PT100 / AD620", "PWM analógico"],
     github: "",
     image: "/images/portada-deshidratador.webp",
     gallery: ["/images/visor3d-deshidratador.webp", "/images/esquema-pcb-deshidratador.webp"],
+  },
+  {
+    title: "Sistema eléctrico de kart de competencia 51.2 V/300 A",
+    category: "Electrónica de potencia",
+    details: [
+      "Omega Lightning es la escudería estudiantil del Tec de Monterrey que compite en el Electratón, una carrera de karts eléctricos. Dirigí el área de electrónica —cuatro personas— y fui responsable del sistema eléctrico completo: un motor de imán permanente Motenergy ME0708 de 6.3 kW nominales y 16.2 kW pico, gobernado por un controlador ALLTRAX SR48400 y un contactor hermético Tyco LEV200 de 500 A continuos, alimentado por dos packs LiFePO4 Tronix de 51.2 V en paralelo —180 A continuos y 190 A de pulso cada uno— que sostienen los picos de 300 A del sistema. A esa potencia el cableado y el orden de los elementos de corte dejan de ser detalles de armado: son la diferencia entre un kart que termina la carrera y uno que se apaga en pista o que pone en riesgo al piloto. El trabajo fue especificar, armar y validar ese sistema dentro del reglamento de la competencia y contra la fecha de la carrera.",
+      "Antes de montar nada en el chasis armamos el sistema de potencia completo sobre una mesa —motor, controlador, contactor, fusible y baterías— siguiendo el diagrama de conexión del fabricante, para probarlo fuera del kart. La decisión de cableado salió de ahí, y salió al revés de como la había planteado: mi idea inicial era subir todo a 3/0 para darle margen al sistema. Lo que me hizo cambiar de opinión fue mirar de dónde sale la corriente. Los packs vienen de fábrica con 6 AWG en sus propias terminales, así que el cuello de botella ya está puesto ahí: engrosar el resto del lazo no sube el límite del sistema ni un ampere, solo agrega peso y un cable que no se deja rutear. El 3/0 con poliflex que teníamos era de pocos hilos muy gruesos y costaba muchísimo doblarlo; el 6 AWG de silicona, de muchos hilos finos, se instala sin pelearse con él —a igual sección la cantidad de hilos no cambia la corriente que aguanta el cable, pero sí cambia por completo lo manejable que es—. El amperímetro apuntaba en la misma dirección: en las pruebas que alcanzamos a hacer, el consumo se quedaba muy por debajo de lo que justificaría un 3/0, y los 300 A aparecían solo como picos. Nunca llegué a medirlo con el piloto arriba y el kart rodando, así que lo tomo como indicio a favor de la decisión y no como su validación. Unificar en 6 AWG dejó todo el lazo en un mismo calibre, que es además el que usan las demás escuderías de la competencia. En paralelo diseñé en SolidWorks y fabriqué una carcasa hermética para proteger los componentes, implementé el sistema Safe-to-Touch para aislar eléctricamente el chasis, y monté un sistema secundario independiente del de tracción: paneles de 12 V y 3 W (250 mA) en paralelo cargando una batería LiFePO4 de 12 V y 6 Ah que alimenta la iluminación, el audio y las protecciones.",
+      "El cambio que más me enseñó vino del reglamento. Teníamos el switch de llave y el botón de paro del lado del KSI del contactor, es decir, sobre la bobina: cortaban la señal que mantiene el contactor cerrado, no la corriente de potencia. La organización exigió que el paro cortara directo desde las baterías, así que reordené la rama de potencia. Quedó fusible → botón de paro, y la resistencia shunt del amperímetro analógico se movió al negativo de la batería. El razonamiento es que el shunt está en serie y mide la misma corriente sin importar en qué punto del lazo esté, así que se puede reubicar sin costo; el paro no. Ese tiene que abrir el positivo: si cortas el negativo, la carga queda internamente conectada al positivo y basta un contacto con el chasis para que el circuito se cierre por otro camino. Es el tipo de detalle que no salta en el esquemático hasta que piensas qué pasa cuando alguien aprieta el paro de verdad. Con ese sistema el equipo quedó en tercer lugar en el Electratón del 23 de agosto de 2025, en el kartódromo de Cuautla.",
+    ],
+    highlights: [
+      "Tercer lugar en el Electratón 2025, kartódromo de Cuautla",
+      "Motor Motenergy ME0708 de 16.2 kW pico con controlador ALLTRAX SR48400 y contactor LEV200 de 500 A",
+      "Dos packs LiFePO4 de 51.2 V en paralelo: 180 A continuos y 190 A de pulso cada uno",
+      "Paro de emergencia recableado para abrir el positivo desde batería, no la bobina del contactor",
+      "Cableado unificado en 6 AWG de silicona, el mismo calibre con el que salen de fábrica los packs",
+      "Sistema secundario autónomo: paneles de 12 V/3 W en paralelo sobre batería LiFePO4 de 12 V/6 Ah",
+    ],
+    tags: ["Electrónica de potencia", "Cableado de alta corriente", "Seguridad eléctrica", "SolidWorks"],
+    github: "",
+    image: "/images/escuderia/kart-en-pista.webp",
+    gallery: [
+      "/images/escuderia/cableado-alta-potencia.webp",
+      "/images/escuderia/equipo-competencia.webp",
+    ],
   },
   {
     title: "AGV sigue-líneas con sistema de carga/descarga",
@@ -98,7 +125,7 @@ export const projects = [
   {
     title: "Chatbot de voz con análisis de conversaciones",
     category: "Software e IA",
-    description: "Aplicación web de chatbot con interacción completamente por voz, construida para explorar la integración de modelos de lenguaje con procesamiento de audio en tiempo real. El objetivo fue un sistema end-to-end que captura la voz del usuario,genera una respuesta inteligente y la devuelve como audio.",
+    description: "Aplicación web de chatbot con interacción completamente por voz, construida para explorar la integración de modelos de lenguaje con procesamiento de audio en tiempo real. El objetivo fue un sistema end-to-end que captura la voz del usuario, genera una respuesta inteligente y la devuelve como audio.",
     details: [
       "Aplicación web de chatbot con interacción completamente por voz, construida para explorar la integración de modelos de lenguaje con procesamiento de audio en tiempo real. El objetivo fue un sistema end-to-end que captura la voz del usuario,genera una respuesta inteligente y la devuelve como audio.",
       " Desarrollado con Flask como servidor, integra la API de OpenAI para generación de respuestas, SpeechRecognition para transcripción voz-a-texto y gTTS con Pygame para síntesis de voz. Los mensajes se persisten en SQLite y la interfaz usa Bootstrap y Tailwind CSS. La comunicación en tiempo real entre cliente y servidor se implementó con Server-Sent Events (SSE).",
@@ -122,9 +149,9 @@ export const education = [
     institution: "Tecnológico de Monterrey, Campus Santa Fe",
     period: "2024 — 2028",
     description: [
-      "Enfoque técnico: sistemas embebidos, microcontroladores, control y diseño mecánico.",
-      "Proyectos: sistema eléctrico de un kart de competencia de 51.2 V/300 A y firmware completo de un AGV autónomo.",
-      "Herramientas: modelado y simulación de ensambles en SolidWorks y NX; programación de microcontroladores (ESP32/Arduino).",
+      "Enfoque técnico: sistemas embebidos, control automático, electrónica de potencia, instrumentación analógica y diseño mecánico.",
+      "Proyectos: sistema eléctrico de un kart de competencia de 51.2 V/300 A, firmware completo de un AGV autónomo e instrumentación analógica de un deshidratador híbrido con socio formador.",
+      "Herramientas: programación de microcontroladores en C++ (Arduino), diseño de esquemático y PCB en KiCad, modelado y simulación de ensambles en SolidWorks y NX.",
       "Graduación esperada: agosto de 2028.",
     ],
   },
@@ -149,8 +176,7 @@ export const experience = [
       "Lideré el desarrollo del sistema eléctrico de un kart de competencia de 51.2 V/300 A, tomando las decisiones de especificación de componentes y coordinando a 4 personas bajo plazos de competencia.",
       "Rediseñé el cableado del kart (calibre 3/0 a 6 AWG de silicona) tras un análisis de componentes, reduciendo peso con la selección correcta de especificaciones.",
       "Diseñé en SolidWorks y fabriqué una carcasa hermética para proteger componentes, e implementé el sistema Safe-to-Touch para aislar eléctricamente el chasis en alta potencia (51.2 V/300 A pico).",
-      "Integré paneles solares para la carga autónoma del sistema eléctrico secundario —iluminación, audio y protección, independiente del sistema de potencia del motor— y desarrollé un sistema de audio adaptativo a la velocidad que mejora la seguridad peatonal en pits.",
-    ],
+      "Integré paneles solares para la carga autónoma del sistema eléctrico secundario, que alimenta iluminación, audio y protección de forma independiente del sistema de potencia del motor, y desarrollé un sistema de audio adaptativo a la velocidad que mejora la seguridad peatonal en pits.",    ],
   },
   {
     role: "Co-líder, Área de Electrónica",
@@ -158,7 +184,7 @@ export const experience = [
     period: "Ago 2025 — Dic 2025",
     description: [
       "Apoyé el diseño e integración del sistema eléctrico del kart, sentando las bases del proyecto que después dirigí.",
-      "Instalé el sistema de iluminación completo —luces delanteras, traseras y de freno— con arreglo en paralelo, garantizando 100% de redundancia lumínica ante fallas.",
+            "Instalé el sistema de iluminación completo, con luces delanteras, traseras y de freno en arreglo paralelo, garantizando 100% de redundancia lumínica ante fallas.",
       "Colaboré en la integración de motor y baterías y en el desarrollo técnico general bajo plazos de competencia.",
     ],
   },
@@ -190,12 +216,12 @@ export const ui = {
     verify: 'Verificar →',
     certificationsLabel: 'Certificaciones',
     categories: [
-      { key: 'programacion', label: 'Programación' },
-      { key: 'hardware', label: 'Hardware / Embebidos' },
-      { key: 'disenio', label: 'Diseño mecánico' },
-      { key: 'laboratorio', label: 'Laboratorio' },
-      { key: 'otros', label: 'Otros' },
-      { key: 'idiomas', label: 'Idiomas' },
-    ],
+  { key: 'programacion', label: 'Programación' },
+  { key: 'electronica', label: 'Electrónica y embebidos' },
+  { key: 'control', label: 'Control e instrumentación' },
+  { key: 'disenio', label: 'Diseño mecánico' },
+  { key: 'laboratorio', label: 'Laboratorio' },
+  { key: 'idiomas', label: 'Idiomas' },
+],
   },
 };

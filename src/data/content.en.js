@@ -1,10 +1,12 @@
 export const personalInfo = {
   name: "Agustín Avelino Pineda",
   title: "Mechatronics Engineering Student",
-  bio: "I design the hardware and write the firmware that moves it. Specialized in embedded systems and power electronics: I led the electronics area of a 51.2 V/300 A competition kart and developed the full firmware for an autonomous AGV.",
+    bio: "I design the hardware and write the firmware that moves it. Embedded systems, power electronics and analog instrumentation: I led the electronics area of a 51.2 V/300 A competition kart and developed the full firmware for an autonomous AGV.",
+  // Two paragraphs: this is the way into the site, not the CV. The detail of
+  // each piece of work lives in Projects and Experience.
   about: [
-    "Mechatronics engineering student with a strong software foundation from my technical training at IPN. I work where code, power electronics and mechanical design meet: high-power systems, firmware for autonomous robots, and parts that have to survive a race.",
-    "At Omega Lightning, Tecnológico de Monterrey's student racing team, I went from co-lead to lead of the electronics area, coordinating a team of four under competition deadlines.",
+    "Mechatronics engineering student with a strong software foundation from my technical training at IPN. I work where code, electronics and mechanical design meet. At Omega Lightning, Tecnológico de Monterrey's student racing team, I went from co-lead to lead of the electronics area and took ownership of the kart's 51.2 V/300 A electrical system, coordinating four people under competition deadlines.",
+    "My most recent work was the instrumentation of a hybrid dehydrator, solved without microcontrollers: two sensor chains with instrumentation amplification and a two-layer PCB routed in KiCad. I'm interested in automation, automotive systems and mobile robotics, and I'm looking for internships where I can take a system from schematic to working prototype.",
   ],
   email: "avelino.pineda.agustin@gmail.com",
   github: "https://github.com/agustinavelino",
@@ -23,12 +25,12 @@ export const certifications = [
 ];
 
 export const skills = {
-  programacion: ["C++", "Python", "MATLAB"],
-  hardware: ["Arduino", "ESP32", "Raspberry Pi"],
+  programacion: ["C++", "Python", "Git / GitHub", "Linux"],
+  electronica: ["PCB design in KiCad", "Signal conditioning", "Power electronics", "Arduino", "I2C / PWM"],
+  control: ["PD / PID control", "Kalman filtering", "Instrumentation (PT100, AD620)", "Firmware debugging and tuning"],
   disenio: ["SolidWorks", "NX Siemens"],
-  laboratorio: ["Soldering", "Electronic systems integration"],
-  otros: ["Git / GitHub", "Linux", "ROS", "Data analysis fundamentals"],
-  idiomas: ["Spanish (native)", "English (advanced)"],
+  laboratorio: ["Soldering", "Electronic systems integration", "Multimeter and oscilloscope troubleshooting"],
+  idiomas: ["Spanish", "English (advanced)"],
 };
 
 export const projects = [
@@ -45,12 +47,36 @@ export const projects = [
       "151 Hz PWM on a 302 mA exhaust fan: the MOSFET dissipates 2 mW instead of 1.8 W",
       "3S 4000 mAh pack gives 15 h of runtime; sensing and airflow continue off-grid",
       "A single 1 kΩ pulldown fixed the LM324's current-sink limit at 0.80 V output",
-      "Two-layer PCB, 150×100 mm, roughly 75 THT components, routed in KiCad",
+      "Two-layer PCB, 150×100 mm, 74 THT components, routed in KiCad",
     ],
     tags: ["KiCad", "Signal conditioning", "PT100 / AD620", "Analog PWM"],
     github: "",
     image: "/images/portada-deshidratador.webp",
     gallery: ["/images/visor3d-deshidratador.webp", "/images/esquema-pcb-deshidratador.webp"],
+  },
+  {
+    title: "51.2 V/300 A electrical system for a racing kart",
+    category: "Power electronics",
+    details: [
+      "Omega Lightning is Tecnológico de Monterrey's student racing team, competing in Electratón, an electric kart race. I led the electronics area — four people — and owned the full electrical system: a Motenergy ME0708 permanent-magnet motor rated 6.3 kW continuous and 16.2 kW peak, driven by an ALLTRAX SR48400 controller and a sealed Tyco LEV200 contactor rated 500 A continuous, fed by two Tronix 51.2 V LiFePO4 packs in parallel — 180 A continuous and 190 A pulse each — which sustain the system's 300 A peaks. At that power level, wiring and the order of the cut-off elements stop being assembly details: they are the difference between a kart that finishes the race and one that dies on track or puts the driver at risk. The job was to specify, build and validate that system within the competition rules and against the race date.",
+      "Before mounting anything on the chassis we assembled the complete power system on a bench — motor, controller, contactor, fuse and batteries — following the manufacturer's wiring diagram, to test it outside the kart. The wiring decision came out of that bench, and it came out the opposite way to how I had framed it: my first plan was to move everything up to 3/0 to give the system headroom. What changed my mind was looking at where the current actually comes from. The packs ship from the factory with 6 AWG on their own terminals, so the bottleneck is already set there: thickening the rest of the loop does not raise the system's limit by a single amp, it only adds weight and a cable that refuses to be routed. The 3/0 in polyflex we had was made of few very thick strands and was brutal to bend; 6 AWG silicone, with many fine strands, installs without fighting you — at equal cross-section the strand count does not change how much current the cable carries, but it completely changes how manageable it is. The ammeter pointed the same way: across the testing we managed to do, draw stayed well below anything that would justify 3/0, with 300 A showing up only as peaks. I never got to measure it with the driver aboard and the kart running, so I take it as evidence for the decision rather than as validation of it. Standardising on 6 AWG left the whole loop at one gauge, which is also what the other teams in the competition run. In parallel I designed and built a sealed enclosure in SolidWorks to protect the components, implemented the Safe-to-Touch system to electrically isolate the chassis, and set up a secondary system independent from traction: 12 V, 3 W (250 mA) panels in parallel charging a 12 V, 6 Ah LiFePO4 battery that powers the lighting, audio and protections.",
+      "The change I learned the most from came from the rulebook. We had the key switch and the emergency stop on the contactor's KSI side — on the coil — so they cut the signal holding the contactor closed, not the power current. The organizers required the stop to cut directly from the batteries, so I reordered the power branch. It ended up fuse → emergency stop, with the analog ammeter's shunt resistor moved to the battery negative. The reasoning: the shunt is in series and measures the same current wherever it sits in the loop, so it can be relocated for free; the stop cannot. It has to open the positive side. If you cut the negative, the load stays internally tied to the positive and a single contact with the chassis is enough to close the circuit through another path. It is the kind of detail that does not show up in the schematic until you think about what happens when someone actually hits the stop. With that system the team finished third at Electratón on 23 August 2025, at the Cuautla kart track.",
+    ],
+    highlights: [
+      "Third place at Electratón 2025, Cuautla kart track",
+      "Motenergy ME0708 motor at 16.2 kW peak with an ALLTRAX SR48400 controller and a 500 A LEV200 contactor",
+      "Two 51.2 V LiFePO4 packs in parallel: 180 A continuous and 190 A pulse each",
+      "Emergency stop rewired to open the positive side from the battery, not the contactor coil",
+      "Wiring standardised on 6 AWG silicone, the same gauge the packs ship with from the factory",
+      "Self-sufficient secondary system: 12 V/3 W panels in parallel on a 12 V/6 Ah LiFePO4 battery",
+    ],
+    tags: ["Power electronics", "High-current wiring", "Electrical safety", "SolidWorks"],
+    github: "",
+    image: "/images/escuderia/kart-en-pista.webp",
+    gallery: [
+      "/images/escuderia/cableado-alta-potencia.webp",
+      "/images/escuderia/equipo-competencia.webp",
+    ],
   },
   {
     title: "Line-following AGV with load/unload system",
@@ -119,9 +145,9 @@ export const education = [
     institution: "Tecnológico de Monterrey, Campus Santa Fe",
     period: "2024 — 2028",
     description: [
-      "Technical focus: embedded systems, microcontrollers, control and mechanical design.",
-      "Projects: electrical system of a 51.2 V/300 A competition kart and the full firmware of an autonomous AGV.",
-      "Tools: modeling and simulation of assemblies in SolidWorks and NX; microcontroller programming (ESP32/Arduino).",
+      "Technical focus: embedded systems, automatic control, power electronics, analog instrumentation and mechanical design.",
+      "Projects: the electrical system of a 51.2 V/300 A competition kart, the full firmware of an autonomous AGV, and the analog instrumentation of a hybrid dehydrator built with an industry partner.",
+      "Tools: microcontroller programming in C++ (Arduino), schematic and PCB design in KiCad, assembly modeling and simulation in SolidWorks and NX.",
       "Expected graduation: August 2028.",
     ],
   },
@@ -146,8 +172,7 @@ export const experience = [
       "Led the development of the electrical system of a 51.2 V/300 A competition kart, making component specification decisions and coordinating a team of 4 under competition deadlines.",
       "Redesigned the kart wiring (from 3/0 to 6 AWG silicone cable) after a component analysis, cutting weight through the right choice of technical specifications.",
       "Designed in SolidWorks and manufactured a sealed enclosure to protect components, and implemented a Safe-to-Touch system to electrically isolate the chassis in high-power operation (51.2 V/300 A peak).",
-      "Integrated solar panels for autonomous charging of the secondary electrical system — lighting, audio and protection, independent from the motor power system — and built a speed-adaptive audio system that improves pedestrian safety in the pit area.",
-    ],
+      "Integrated solar panels for autonomous charging of the secondary electrical system, which powers lighting, audio and protection independently from the motor power system, and built a speed-adaptive audio system that improves pedestrian safety in the pit area.",    ],
   },
   {
     role: "Co-lead, Electronics Area",
@@ -155,7 +180,7 @@ export const experience = [
     period: "Aug 2025 — Dec 2025",
     description: [
       "Supported the design and integration of the kart's electrical system, laying the groundwork for the project I later led.",
-      "Installed the complete lighting system — headlights, taillights and brake lights — in a parallel arrangement, guaranteeing 100% lighting redundancy in case of failure.",
+            "Installed the complete lighting system, with headlights, taillights and brake lights in a parallel arrangement, guaranteeing 100% lighting redundancy in case of failure.",
       "Collaborated on motor and battery integration and general technical development under competition deadlines.",
     ],
   },
@@ -186,12 +211,12 @@ export const ui = {
   skills: {
     verify: 'Verify →',
     certificationsLabel: 'Certifications',
-    categories: [
+        categories: [
       { key: 'programacion', label: 'Programming' },
-      { key: 'hardware', label: 'Hardware / Embedded' },
+      { key: 'electronica', label: 'Electronics & embedded' },
+      { key: 'control', label: 'Control & instrumentation' },
       { key: 'disenio', label: 'Mechanical design' },
       { key: 'laboratorio', label: 'Lab' },
-      { key: 'otros', label: 'Other' },
       { key: 'idiomas', label: 'Languages' },
     ],
   },
