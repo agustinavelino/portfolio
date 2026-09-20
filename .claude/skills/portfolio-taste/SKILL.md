@@ -31,7 +31,14 @@ Esto es lo más importante del archivo. Nada de lo siguiente entra al proyecto:
 - **Más de un color de acento.** El ámbar es el único. Sin azules de "info",
   sin verdes de "éxito", sin morados decorativos.
 - **Texto centrado en bloques largos.** El cuerpo se alinea a la izquierda.
-- **Animaciones de rebote (`bounce`), `pulse` infinito o partículas flotantes.**
+- **Animaciones de rebote (`bounce`) o `pulse` infinito.**
+
+> **Excepción vigente — trazos del Hero.** `src/components/ui/background-paths.tsx`
+> (Background Paths de Kokonut UI) sí usa una flotación en bucle infinito, por
+> decisión explícita del autor. Es la **única** animación infinita permitida en
+> el sitio: vive detrás del Hero, se anima por grupos (3 animaciones, no una por
+> trazo) y se detiene con `prefers-reduced-motion`. No la retires ni la
+> "corrijas", y no uses este permiso para añadir otras.
 
 ---
 
@@ -48,7 +55,7 @@ un hex literal ni una clase `zinc-*` cruda.
 | `bg-surface-3` `#1f1f23` | tercera capa (pills sobre tarjeta) |
 | `text-ink` `#fafafa` | texto primario, titulares |
 | `text-ink-2` `#a1a1aa` | cuerpo, descripciones |
-| `text-ink-3` `#71717a` | labels, metadatos, fechas |
+| `text-ink-3` `#8a8a93` | labels, metadatos, fechas — es el gris **más oscuro** permitido: por debajo se cae del 4.5:1 de AA |
 | `border-line` `white/6%` | borde por defecto |
 | `border-line-strong` `white/10%` | borde en hover o énfasis |
 | `text-signal` / `bg-signal` `#f0a020` | acento único |
@@ -126,6 +133,9 @@ Reglas duras:
   `left` ni `margin` — provocan reflow.
 - **Toda animación de entrada dispara una sola vez.** En Motion:
   `whileInView` + `viewport={{ once: true }}`.
+- **Si varios elementos comparten la misma animación en bucle, se anima el
+  contenedor, no cada hijo.** El resultado visual es idéntico y el coste cae en
+  proporción al número de hijos.
 - **Todo bloque animado respeta `useReducedMotion()`** de `motion/react`. Si
   devuelve `true`, el contenido aparece en su estado final sin transición.
 - El movimiento comunica jerarquía y causa. Si no explica nada, se quita.
