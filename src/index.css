@@ -16,7 +16,9 @@
   /* --- Tinta ------------------------------------------------------------ */
   --color-ink: #fafafa;
   --color-ink-2: #a1a1aa;
-  --color-ink-3: #71717a;
+  /* #8a8a93, no zinc-500 (#71717a): aquel se quedaba en 3.4–4.1:1 sobre
+     nuestras superficies y no llegaba al 4.5:1 que pide WCAG AA. */
+  --color-ink-3: #8a8a93;
 
   /* --- Líneas ----------------------------------------------------------- */
   /* Bordes translúcidos, no grises sólidos: se asientan sobre cualquier capa. */
@@ -56,6 +58,11 @@
   --spacing-gutter: 2rem;
   --spacing-container: 76rem; /* 1216px */
   --spacing-rail: 12.5rem; /* 200px — columna de label */
+
+  /* Breakpoint propio del navbar: por debajo de 864px los enlaces no caben
+     junto a la marca y el selector de idioma, y se pasa a hamburguesa.
+     Habilita el variante `nav:` en Tailwind. */
+  --breakpoint-nav: 54rem;
 }
 
 /* --------------------------------------------------------------------------
@@ -119,7 +126,7 @@
 
   --ink: #fafafa;
   --ink-2: #a1a1aa;
-  --ink-3: #71717a;
+  --ink-3: #8a8a93;
 
   --line: rgb(255 255 255 / 0.06);
   --line-strong: rgb(255 255 255 / 0.1);

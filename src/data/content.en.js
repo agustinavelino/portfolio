@@ -148,6 +148,11 @@ export const ui = {
     contact: 'Contact',
     downloadCV: 'Download CV',
   },
+  nav: {
+    toggleLanguage: 'Switch language',
+    openMenu: 'Open menu',
+    closeMenu: 'Close menu',
+  },
   projects: {
     viewMore: 'View more',
     prev: 'Previous project',

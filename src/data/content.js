@@ -151,6 +151,11 @@ export const ui = {
     contact: 'Contacto',
     downloadCV: 'Descargar CV',
   },
+  nav: {
+    toggleLanguage: 'Cambiar idioma',
+    openMenu: 'Abrir menú',
+    closeMenu: 'Cerrar menú',
+  },
   projects: {
     viewMore: 'Ver más',
     prev: 'Proyecto anterior',
