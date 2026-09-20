@@ -92,21 +92,37 @@ editar cualquier componente, CSS o animación. No improvises colores, tamaños n
 
 ## Estado de la migración
 
-El proyecto está migrando de CSS Modules (paleta clara) a Tailwind v4 (paleta oscura).
+**Completada.** No queda ningún CSS Module, ni el puente temporal de `index.css`, ni
+`useScrollFadeIn.js`. Toda la UI es Tailwind v4 sobre los tokens de `@theme`.
 
-- **Fase 1 (en curso):** stack, tokens, SKILL.md y Hero.
-- **Fase 2:** Navbar, Footer, shell de secciones.
-- **Fase 3:** About, Education, Skills, Experience, Contact.
-- **Fase 4:** Projects, ProjectModal, pulido de rendimiento y accesibilidad.
+### Cosas que ya están resueltas y conviene no deshacer
 
-Mientras dura la migración, `src/index.css` contiene un bloque marcado
-**"PUENTE TEMPORAL"** con las variables y clases heredadas (`.section`, `.btn`, `.pill`,
-`.fade-in`…) remapeadas a la paleta oscura, para que las secciones aún no migradas no se
-rompan. **Ese bloque se elimina completo al cerrar la Fase 3**, junto con los
-`.module.css` restantes y `useScrollFadeIn.js`.
+- **Contraste AA verificado** en todo el texto. `--color-ink-3` es el gris más oscuro
+  permitido; oscurecerlo rompe el 4.5:1.
+- **`document.documentElement.lang`** lo sincroniza `LanguageContext` al cambiar idioma.
+- **Enlace de salto** al principio de `App.tsx`: debe seguir siendo el primer elemento
+  enfocable de la página.
+- **Jerarquía de encabezados** sin saltos: las etiquetas de sección son `<h2>` (las
+  pinta `label` de `styles.ts`, no la etiqueta HTML). Hay un solo `<h1>`, en el Hero.
+- **El panel de proyecto atrapa el foco** mientras está abierto y lo devuelve a la
+  tarjeta al cerrarse.
+- **Imágenes:** `chatbot` e `imagen1` están en WebP porque ahorraban 91% y 53%.
+  `robot` y `tablero` siguen en JPEG **a propósito**: medido, WebP no mejoraba
+  (14% y −2%). Mide antes de convertir.
+- **Iconos:** `favicon-32.png` y `apple-touch-icon.png`, generados a partir del
+  monograma con el fondo `#09090b` en vez de transparente, para que se vean también
+  sobre barras de pestañas claras.
 
-Al migrar una sección: reescribirla con Tailwind, borrar su `.module.css` y dejar de
-usar las clases del puente.
+### Piezas compartidas — úsalas antes de escribir clases nuevas
+
+- **`src/components/Section.tsx`** — esqueleto de sección (riel de etiqueta + contenido +
+  aparición al entrar en pantalla). Toda sección de contenido se construye con él.
+- **`src/components/Timeline.tsx`** — lista cronológica con riel y nodos. La usan
+  Education y Experience.
+- **`src/lib/styles.ts`** — `btnSolid`, `btnOutline`, `btnQuiet`, `label`, `labelSignal`.
+  Si un botón o una etiqueta necesita el mismo aspecto, se importa de aquí; no se
+  reescriben las utilidades.
+- **`src/lib/utils.ts`** — `cn()` para componer clases.
 
 ---
 
