@@ -34,6 +34,7 @@ export const skills = {
 export const projects = [
   {
     title: "AGV sigue-líneas con sistema de carga/descarga",
+    category: "Robótica autónoma",
     description: "Diseño y construcción de un AGV autónomo basado en Arduino Uno, capaz de seguir una ruta predefinida, detectar estaciones de carga/descarga y operar un mecanismo de elevación para transportar materiales sin intervención humana.",
     details: [
       "Este proyecto consistió en el diseño y construcción de un AGV (Automated Guided Vehicle) basado en Arduino Uno, capaz de seguir una ruta predefinida de forma autónoma, detectar estaciones de carga/descarga a lo largo del recorrido y operar un mecanismo de elevación para transportar materiales sin intervención humana. El objetivo era integrar control de movimiento, sensórica y mecanismos en una sola plataforma funcional, replicando a pequeña escala el funcionamiento de un AGV industrial.",
@@ -50,9 +51,14 @@ export const projects = [
     tags: ["C++", "Control PD", "SolidWorks", "I2C"],
     github: "",
     image: "/images/robot.jpeg",
+    // Imágenes adicionales del proyecto. Se ven como miniaturas dentro del panel
+    // abierto; la de arriba (`image`) sigue siendo la portada de la tarjeta.
+    // Copia los archivos a `public/images/` y referencia la ruta: "/images/mi-foto.jpg"
+    gallery: [],
   },
   {
     title: "Tablero de reacción para receptores de fútbol americano",
+    category: "Electrónica y firmware",
     description: "Tablero interactivo con matriz de LEDs controlada por Arduino para entrenar receptores de un equipo de fútbol americano, midiendo y mejorando su tiempo de reacción en campo.",
     details: [
       "El equipo de fútbol americano necesitaba una herramienta de entrenamiento para trabajar el tiempo de reacción y la toma de decisiones de sus receptores. Diseñé y construí un tablero con 16 paneles LED que se iluminan en secuencias aleatorias; el jugador debe tocar el panel correcto lo más rápido posible.",
@@ -67,9 +73,11 @@ export const projects = [
     tags: ["Arduino", "C++"],
     github: "https://github.com/agustinavelino/tablero_receptores",
     image: "/images/tablero.jpeg",
+    gallery: [],
   },
   {
     title: "Chatbot de voz con análisis de conversaciones",
+    category: "Software e IA",
     description: "Aplicación web de chatbot con interacción completamente por voz, construida para explorar la integración de modelos de lenguaje con procesamiento de audio en tiempo real. El objetivo fue un sistema end-to-end que captura la voz del usuario,genera una respuesta inteligente y la devuelve como audio.",
     details: [
       "Aplicación web de chatbot con interacción completamente por voz, construida para explorar la integración de modelos de lenguaje con procesamiento de audio en tiempo real. El objetivo fue un sistema end-to-end que captura la voz del usuario,genera una respuesta inteligente y la devuelve como audio.",
@@ -83,6 +91,7 @@ export const projects = [
     tags: ["Flask", "SQLite", "OpenAI API"],
     github: "https://github.com/agustinavelino/chatbott",
     image: "/images/chatbot.png",
+    gallery: [],
   },
  
 ];
@@ -144,6 +153,10 @@ export const ui = {
   },
   projects: {
     viewMore: 'Ver más',
+    prev: 'Proyecto anterior',
+    next: 'Proyecto siguiente',
+    close: 'Cerrar',
+    image: 'Imagen {n}',
     viewOnGitHub: 'Ver en GitHub →',
     highlights: 'Highlights',
   },

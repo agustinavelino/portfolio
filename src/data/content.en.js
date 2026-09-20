@@ -34,6 +34,7 @@ export const skills = {
 export const projects = [
   {
     title: "Line-following AGV with load/unload system",
+    category: "Autonomous robotics",
     description: "Design and construction of an autonomous Arduino Uno-based AGV capable of following a predefined route, detecting loading/unloading stations, and operating a lifting mechanism to transport materials without human intervention.",
     details: [
       "This project consisted of the design and construction of an AGV (Automated Guided Vehicle) based on an Arduino Uno, capable of autonomously following a predefined route, detecting loading/unloading stations along the way, and operating a lifting mechanism to transport materials without human intervention. The goal was to integrate motion control, sensing, and mechanisms into a single functional platform, replicating the operation of an industrial AGV at a small scale.",
@@ -50,9 +51,12 @@ export const projects = [
     tags: ["C++", "PD control", "SolidWorks", "I2C"],
     github: "",
     image: "/images/robot.jpeg",
+    // Imágenes adicionales — mantener en paralelo con content.js
+    gallery: [],
   },
   {
     title: "Reaction Board for American Football Wide Receivers",
+    category: "Electronics & firmware",
     description: "Interactive board with an Arduino-controlled LED matrix to train wide receivers, measuring and improving their reaction time in the field.",
     details: [
       "The American football team needed a training tool to work on their receivers' reaction time and decision-making. I designed and built a board with 16 LED panels that light up in random sequences; the player must touch the correct panel as quickly as possible.",
@@ -67,9 +71,11 @@ export const projects = [
     tags: ["Arduino", "C++"],
     github: "https://github.com/agustinavelino/tablero_receptores",
     image: "/images/tablero.jpeg",
+    gallery: [],
   },
   {
     title: "Voice Chatbot with Conversation Analytics",
+    category: "Software & AI",
     description: "Voice-first web chatbot built to explore the integration of language models with real-time audio processing — an end-to-end system that captures user speech, generates an intelligent response, and returns it as audio.",
     details: [
       "Voice-first web chatbot built to explore the integration of language models with real-time audio processing. The goal was an end-to-end system that captures user speech, generates an intelligent response, and returns it as audio.",
@@ -83,6 +89,7 @@ export const projects = [
     tags: ["Flask", "SQLite", "OpenAI API"],
     github: "https://github.com/agustinavelino/chatbott",
     image: "/images/chatbot.png",
+    gallery: [],
   },
 ];
 
@@ -143,6 +150,10 @@ export const ui = {
   },
   projects: {
     viewMore: 'View more',
+    prev: 'Previous project',
+    next: 'Next project',
+    close: 'Close',
+    image: 'Image {n}',
     viewOnGitHub: 'View on GitHub →',
     highlights: 'Highlights',
   },

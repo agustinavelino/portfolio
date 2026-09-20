@@ -35,7 +35,7 @@
 }
 
 .right a:hover {
-  color: #ffffff;
+  color: var(--ink);
   border-bottom-color: var(--signal);
 }
 

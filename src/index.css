@@ -1,105 +1,155 @@
+@import 'tailwindcss';
+
 /* ==========================================================================
-   Sistema base — "panel de instrumentos"
-   Paleta fría de taller + un único acento ámbar de señal.
+   Sistema de diseño — oscuro, zinc + ámbar de señal
+   Las reglas de uso viven en .claude/skills/portfolio-taste/SKILL.md
+   ========================================================================== */
+
+@theme {
+  /* --- Superficies ------------------------------------------------------ */
+  /* Nunca negro puro: el base es zinc-950 y las capas suben desde ahí. */
+  --color-base: #09090b;
+  --color-surface: #111113;
+  --color-surface-2: #18181b;
+  --color-surface-3: #1f1f23;
+
+  /* --- Tinta ------------------------------------------------------------ */
+  --color-ink: #fafafa;
+  --color-ink-2: #a1a1aa;
+  --color-ink-3: #71717a;
+
+  /* --- Líneas ----------------------------------------------------------- */
+  /* Bordes translúcidos, no grises sólidos: se asientan sobre cualquier capa. */
+  --color-line: rgb(255 255 255 / 0.06);
+  --color-line-strong: rgb(255 255 255 / 0.1);
+
+  /* --- Señal ------------------------------------------------------------ */
+  /* Acento único. Ámbar sobre zinc = instrumentación, no plantilla de IA. */
+  --color-signal: #f0a020;
+  --color-signal-dim: #b87714;
+  --color-signal-soft: rgb(240 160 32 / 0.12);
+
+  /* --- Tipografía ------------------------------------------------------- */
+  /* Una sola familia. La jerarquía sale del eje wdth, el peso y la caja. */
+  --font-sans: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Escala con saltos grandes — nunca incrementos de 2px. */
+  --text-label: 0.75rem; /* 12px — labels uppercase */
+  --text-label--line-height: 1.2;
+  --text-sm: 0.875rem; /* 14px — UI, botones */
+  --text-sm--line-height: 1.45;
+  --text-base: 0.9375rem; /* 15px — cuerpo */
+  --text-base--line-height: 1.65;
+  --text-lg: 1.125rem; /* 18px — entradilla */
+  --text-lg--line-height: 1.55;
+  --text-title: 1.875rem; /* 30px — títulos de bloque */
+  --text-title--line-height: 1.2;
+  --text-display: 3.75rem; /* 60px — Hero */
+  --text-display--line-height: 0.98;
+
+  /* --- Movimiento ------------------------------------------------------- */
+  /* Curvas cerradas. No se improvisan easings por componente. */
+  --ease-entrance: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+
+  /* --- Métrica ---------------------------------------------------------- */
+  --spacing-gutter: 2rem;
+  --spacing-container: 76rem; /* 1216px */
+  --spacing-rail: 12.5rem; /* 200px — columna de label */
+}
+
+/* --------------------------------------------------------------------------
+   Capa base
+   -------------------------------------------------------------------------- */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* deja aire bajo la navbar fija al saltar de sección */
+    scroll-padding-top: 5.625rem;
+    background-color: var(--color-base);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-variation-settings: 'wdth' 100;
+    background-color: var(--color-base);
+    color: var(--color-ink);
+    font-size: var(--text-base);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--color-signal);
+    color: var(--color-base);
+  }
+}
+
+/* ==========================================================================
+   PUENTE TEMPORAL — Fases 1-3
+   Las secciones aún no migradas (About, Education, Skills, Experience,
+   Contact, Projects, Navbar, Footer) siguen consumiendo estas variables y
+   clases desde sus .module.css. Se remapean a la paleta oscura para que no
+   se rompan a mitad de migración.
+   ELIMINAR ESTE BLOQUE COMPLETO al cerrar la Fase 3.
    ========================================================================== */
 
 :root {
-  /* Superficies */
-  --paper: #edf0f3;
-  --paper-deep: #e3e8ec;
-  --surface: #ffffff;
+  --paper: #09090b;
+  --paper-deep: #060607;
+  --surface: #111113;
 
-  /* Tinta */
-  --ink: #0e1519;
-  --ink-2: #43505a;
-  --ink-3: #6e7c86;
+  --ink: #fafafa;
+  --ink-2: #a1a1aa;
+  --ink-3: #71717a;
 
-  /* Líneas */
-  --line: #dce2e7;
-  --line-strong: #c3ccd3;
+  --line: rgb(255 255 255 / 0.06);
+  --line-strong: rgb(255 255 255 / 0.1);
 
-  /* Señal (solo marcas gráficas y acentos puntuales) */
   --signal: #f0a020;
-  --signal-deep: #96560a;
+  --signal-deep: #f0a020;
 
-  /* Elevación */
-  --shadow-sm: 0 1px 2px rgba(14, 21, 25, 0.04);
-  --shadow-md: 0 1px 2px rgba(14, 21, 25, 0.04), 0 6px 18px -12px rgba(14, 21, 25, 0.18);
-  --shadow-lg: 0 1px 3px rgba(14, 21, 25, 0.05), 0 14px 32px -18px rgba(14, 21, 25, 0.24);
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 1px 2px rgb(0 0 0 / 0.4), 0 6px 18px -12px rgb(0 0 0 / 0.7);
+  --shadow-lg: 0 1px 3px rgb(0 0 0 / 0.5), 0 14px 32px -18px rgb(0 0 0 / 0.8);
 
-  /* Tipografía: una sola familia, diferenciada por ancho, peso y caja */
   --font-sans: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
-  /* Métrica */
-  --container: 1080px;
+  --container: 1216px;
   --gutter: 32px;
   --radius: 8px;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-  font-size: 16px;
-  /* deja aire bajo la navbar fija al saltar de sección */
-  scroll-padding-top: 90px;
-}
-
-body {
-  font-family: var(--font-sans);
-  font-variation-settings: 'wdth' 100;
-  background-color: var(--paper);
-  color: var(--ink);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-img {
-  max-width: 100%;
-  display: block;
-}
-
-:focus-visible {
-  outline: 2px solid var(--signal-deep);
-  outline-offset: 3px;
-  border-radius: 4px;
-}
-
-::selection {
-  background: var(--signal);
-  color: var(--ink);
-}
-
-/* --------------------------------------------------------------------------
-   Aparición al hacer scroll
-   -------------------------------------------------------------------------- */
-
 .fade-in {
   opacity: 0;
   transform: translateY(18px);
-  transition: opacity 0.6s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition:
+    opacity 0.6s var(--ease-entrance),
+    transform 0.6s var(--ease-entrance);
 }
 
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
 }
-
-/* --------------------------------------------------------------------------
-   Sección: riel de etiqueta a la izquierda + contenido a la derecha
-   -------------------------------------------------------------------------- */
 
 .section {
   max-width: var(--container);
@@ -130,10 +180,6 @@ img {
   color: var(--ink-3);
 }
 
-/* --------------------------------------------------------------------------
-   Píldoras y botones
-   -------------------------------------------------------------------------- */
-
 .pill {
   display: inline-block;
   border: 1px solid var(--line);
@@ -159,7 +205,10 @@ img {
   background: var(--surface);
   color: var(--ink);
   box-shadow: var(--shadow-sm);
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease,
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease,
     border-color 0.15s ease;
 }
 
@@ -177,12 +226,12 @@ img {
 .btn.btn-primary {
   background: var(--ink);
   border-color: var(--ink);
-  color: #ffffff;
+  color: var(--paper);
 }
 
 .btn.btn-primary:hover {
-  background: #1b262d;
-  border-color: #1b262d;
+  background: #ffffff;
+  border-color: #ffffff;
 }
 
 .btn.btn-ghost {
@@ -197,10 +246,6 @@ img {
   color: var(--ink);
   box-shadow: var(--shadow-sm);
 }
-
-/* --------------------------------------------------------------------------
-   Responsive
-   -------------------------------------------------------------------------- */
 
 @media (max-width: 900px) {
   .section-grid {
@@ -225,6 +270,14 @@ img {
   }
 }
 
+/* FIN DEL PUENTE TEMPORAL
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Accesibilidad: movimiento reducido
+   Cubre CSS y, vía useReducedMotion() de Motion, también las animaciones JS.
+   -------------------------------------------------------------------------- */
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -242,5 +295,6 @@ img {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }
