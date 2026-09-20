@@ -1,5 +1,7 @@
 import { useLanguage } from '../contexts/LanguageContext'
 import { Carousel, Card, type CarouselCard } from './ui/apple-cards-carousel'
+import { btnOutline, label as labelClass } from '@/lib/styles'
+import { cn } from '@/lib/utils'
 
 /** Contenido del panel abierto de un proyecto. */
 function ProjectDetail({
@@ -30,9 +32,7 @@ function ProjectDetail({
 
       {project.highlights && project.highlights.length > 0 && (
         <div className="mt-10 border-t border-line pt-6">
-          <p className="text-label font-semibold tracking-[0.14em] text-ink-3 uppercase [font-variation-settings:'wdth'_88]">
-            {labels.highlights}
-          </p>
+          <p className={labelClass}>{labels.highlights}</p>
           <ul className="mt-4 max-w-[65ch] space-y-3">
             {project.highlights.map((item, i) => (
               <li key={i} className="flex gap-3 text-base text-ink-2">
@@ -52,7 +52,7 @@ function ProjectDetail({
           href={project.github}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-10 inline-flex items-center gap-2 rounded-lg border border-line-strong bg-surface px-5 py-2.5 text-sm font-medium text-ink transition-colors duration-200 hover:border-ink-3 hover:bg-surface-3 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-signal"
+          className={cn(btnOutline, "mt-10")}
         >
           {labels.viewOnGitHub}
         </a>
@@ -94,11 +94,7 @@ export default function Projects() {
           close: ui.projects.close,
           image: ui.projects.image,
         }}
-        header={
-          <p className="text-label font-semibold tracking-[0.14em] text-ink-3 uppercase [font-variation-settings:'wdth'_88]">
-            Projects
-          </p>
-        }
+        header={<h2 className={labelClass}>Projects</h2>}
       />
     </section>
   )

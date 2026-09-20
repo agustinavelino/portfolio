@@ -1,6 +1,8 @@
 import { motion, useReducedMotion, type Variants } from 'motion/react'
 import { useLanguage } from '../contexts/LanguageContext'
 import HeroBackdrop from './HeroBackdrop'
+import { btnOutline, btnQuiet, btnSolid, label as labelClass } from '@/lib/styles'
+import { cn } from '@/lib/utils'
 
 export default function Hero() {
   const {
@@ -43,9 +45,7 @@ export default function Hero() {
           {/* Antetítulo con marca de señal */}
           <motion.div variants={item} className="flex items-center gap-3">
             <span className="h-px w-8 bg-signal" />
-            <span className="text-label font-semibold tracking-[0.14em] text-ink-3 uppercase [font-variation-settings:'wdth'_88]">
-              {personalInfo.title}
-            </span>
+            <span className={labelClass}>{personalInfo.title}</span>
           </motion.div>
 
           <motion.h1
@@ -63,26 +63,16 @@ export default function Hero() {
           </motion.p>
 
           <motion.div variants={item} className="mt-10 flex flex-wrap items-center gap-3">
-            <button
-              onClick={() => scrollTo('#projects')}
-              className="inline-flex items-center gap-2 rounded-lg bg-ink px-5 py-2.5 text-sm font-medium text-base transition-colors duration-200 hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-signal"
-            >
+            <button onClick={() => scrollTo('#projects')} className={btnSolid}>
               {ui.hero.viewProjects}
             </button>
 
-            <button
-              onClick={() => scrollTo('#contact')}
-              className="inline-flex items-center gap-2 rounded-lg border border-line-strong bg-surface px-5 py-2.5 text-sm font-medium text-ink transition-colors duration-200 hover:border-ink-3 hover:bg-surface-2 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-signal"
-            >
+            <button onClick={() => scrollTo('#contact')} className={btnOutline}>
               {ui.hero.contact}
             </button>
 
             {personalInfo.cv && (
-              <a
-                href={personalInfo.cv}
-                download
-                className="group inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium text-ink-2 transition-colors duration-200 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-signal"
-              >
+              <a href={personalInfo.cv} download className={cn(btnQuiet, 'group')}>
                 {ui.hero.downloadCV}
                 <span
                   aria-hidden="true"
