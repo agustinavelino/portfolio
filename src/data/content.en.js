@@ -33,6 +33,26 @@ export const skills = {
 
 export const projects = [
   {
+    title: "Analog instrumentation for a hybrid dehydrator",
+    category: "Electronics and instrumentation",
+    details: [
+      "A food dehydrator with two heat sources —a solar collector and a 127 VAC heating element— for which I designed the measurement, indication and control electronics. The goal was to monitor and regulate the drying process without microcontrollers or any programmable device: the requirement forced me to solve with discrete analog electronics what would normally be done with an ADC and firmware. It had to measure at least two variables using non-digital sensors, display them to the operator, and regulate an actuator continuously rather than by on/off switching, running day and night.",
+      "The temperature channel is a class B PT100 in the upper leg of a Wheatstone bridge excited at 5.00 V, followed by an AD620 at a gain of 29.6 and a 1.69 Hz passive filter: 1.00 to 4.60 V across 20–100 °C. It sits in the upper leg because with the sensor below, the nodes settle at 0.49 V and the amplifier saturates. Humidity comes from a capacitive HIH-4030. The whole design is ratiometric —bridge, references and scale endpoints all hang off the same 5 V rail— so battery discharge doesn't shift the reading. Two LM3914s drive 10-LED bars, a comparator with hysteresis switches the heater through an SSR, and an NE555 at 151 Hz with an IRLZ44N drives the exhaust fan by PWM.",
+      "Both signal chains were validated on a breadboard, with zero and span trimmed against a reference thermometer and checked by replacing the PT100 with resistors from 110 to 138.5 Ω. I debugged three faults: the 0.80 V reference follower stuck because of the 250 µA the LM3914's internal divider pushes into that node, a floating RLO pin that collapsed the scale window, and resistance readings falsified by parallel paths when measuring in-circuit. Schematic and PCB were laid out in KiCad; fabrication didn't fit the term because I checked the supplier's capabilities after routing. Manufacturing rules are a design input, not a final check.",
+    ],
+    highlights: [
+      "45 mV/°C scale using an AD620 at a gain of 29.6, with 8 °C of resolution per LED",
+      "151 Hz PWM on a 302 mA exhaust fan: the MOSFET dissipates 2 mW instead of 1.8 W",
+      "3S 4000 mAh pack gives 15 h of runtime; sensing and airflow continue off-grid",
+      "A single 1 kΩ pulldown fixed the LM324's current-sink limit at 0.80 V output",
+      "Two-layer PCB, 150×100 mm, roughly 75 THT components, routed in KiCad",
+    ],
+    tags: ["KiCad", "Signal conditioning", "PT100 / AD620", "Analog PWM"],
+    github: "",
+    image: "/images/portada-deshidratador.webp",
+    gallery: ["/images/visor3d-deshidratador.webp", "/images/esquema-pcb-deshidratador.webp"],
+  },
+  {
     title: "Line-following AGV with load/unload system",
     category: "Autonomous robotics",
     description: "Design and construction of an autonomous Arduino Uno-based AGV capable of following a predefined route, detecting loading/unloading stations, and operating a lifting mechanism to transport materials without human intervention.",

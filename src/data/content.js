@@ -33,6 +33,26 @@ export const skills = {
 
 export const projects = [
   {
+    title: "Instrumentación analógica de deshidratador híbrido",
+    category: "Electrónica e instrumentación",
+    details: [
+      "Deshidratador de alimentos con dos fuentes de calor —colector solar y resistencia eléctrica de 127 VAC— para el que diseñé la electrónica de medición, indicación y control. El objetivo era monitorear y regular el secado sin microcontroladores ni ningún dispositivo programable: el requisito obligaba a resolver con electrónica analógica discreta lo que normalmente se haría con un ADC y firmware. Había que medir al menos dos variables con sensores no digitales, mostrarlas al operador y regular un actuador de forma continua, no por encendido y apagado, con el sistema operando de día y de noche.",
+      "El canal de temperatura es un PT100 clase B en la rama superior de un puente de Wheatstone a 5.00 V, con AD620 a ganancia 29.6 y filtro pasivo de 1.69 Hz: 1.00 a 4.60 V para 20–100 °C. Va arriba porque con el sensor abajo los nodos quedan en 0.49 V y el amplificador se satura. La humedad la mide un HIH-4030 capacitivo. Todo es ratiométrico —puente, referencias y extremos de escala cuelgan del mismo riel de 5 V—, así que la descarga de la batería no corre la lectura. Dos LM3914 indican en barras de 10 LEDs, un comparador con histéresis conmuta la resistencia por un SSR y un NE555 a 151 Hz con un IRLZ44N regula el extractor por PWM.",
+      "Ambas cadenas quedaron validadas en protoboard, con ajuste de cero y span contra termómetro patrón y verificación sustituyendo el PT100 por resistencias de 110 a 138.5 Ω. Depuré tres fallas: el seguidor de la referencia de 0.80 V clavado por los 250 µA que le inyecta el divisor interno del LM3914, un pin RLO flotante que cerraba la ventana de escala, y lecturas de resistencia falseadas por caminos paralelos al medir en circuito. El esquemático y la PCB quedaron trazados en KiCad; la fabricación no entró en el periodo porque consulté las capacidades del proveedor después de rutear. Las reglas del fabricante son dato de entrada, no verificación final.",
+    ],
+    highlights: [
+      "Escala de 45 mV/°C con AD620 a ganancia 29.6 y resolución de 8 °C por LED",
+      "PWM a 151 Hz sobre extractor de 302 mA: el MOSFET disipa 2 mW en lugar de 1.8 W",
+      "Pack 3S de 4000 mAh con 15 h de autonomía; sigue midiendo y ventilando sin red",
+      "Una resistencia de 1 kΩ a tierra corrigió el hundimiento de corriente del LM324 a 0.80 V",
+      "PCB de dos caras, 150×100 mm y ~75 componentes THT trazada en KiCad",
+    ],
+    tags: ["KiCad", "Acondicionamiento de señal", "PT100 / AD620", "PWM analógico"],
+    github: "",
+    image: "/images/portada-deshidratador.webp",
+    gallery: ["/images/visor3d-deshidratador.webp", "/images/esquema-pcb-deshidratador.webp"],
+  },
+  {
     title: "AGV sigue-líneas con sistema de carga/descarga",
     category: "Robótica autónoma",
     description: "Diseño y construcción de un AGV autónomo basado en Arduino Uno, capaz de seguir una ruta predefinida, detectar estaciones de carga/descarga y operar un mecanismo de elevación para transportar materiales sin intervención humana.",
