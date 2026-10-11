@@ -16,7 +16,15 @@ export const personalInfo = {
   cv: "CV_Agustin_Avelino_Pineda_ES.pdf",
 };
 
+// Cada entrada se verifica de una de dos formas: `badgeId` (insignia pública en
+// Credly) o `file` (PDF propio servido desde /public). Nunca las dos.
 export const certifications = [
+  {
+    name: "Global Student Experience — Supply Chain",
+    issuer: "Schneider Electric",
+    date: "Octubre 2026",
+    file: "/Certificado_Schneider_Supply_Chain.pdf",
+  },
   {
     name: "NX Associate",
     issuer: "Siemens",
@@ -214,6 +222,7 @@ export const ui = {
   },
   skills: {
     verify: 'Verificar →',
+    viewCertificate: 'Ver certificado →',
     certificationsLabel: 'Certificaciones',
     categories: [
   { key: 'programacion', label: 'Programación' },

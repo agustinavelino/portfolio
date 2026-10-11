@@ -43,7 +43,12 @@ export default function Skills() {
             {certifications.map((cert) => (
               <a
                 key={cert.name}
-                href={`https://www.credly.com/badges/${cert.badgeId}/public_url`}
+                // Dos orígenes posibles: insignia de Credly o PDF propio.
+                href={
+                  cert.badgeId
+                    ? `https://www.credly.com/badges/${cert.badgeId}/public_url`
+                    : cert.file
+                }
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex flex-col gap-[3px] rounded-lg border border-line bg-surface px-5.5 py-4 transition-colors duration-200 hover:border-line-strong hover:bg-surface-2 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-signal max-[640px]:w-full"
@@ -51,9 +56,11 @@ export default function Skills() {
                 <span className="text-[15px] font-semibold text-ink [font-variation-settings:'wdth'_104]">
                   {cert.name}
                 </span>
-                <span className="text-[13px] text-ink-3">{cert.issuer}</span>
+                <span className="text-[13px] text-ink-3">
+                  {cert.date ? `${cert.issuer} · ${cert.date}` : cert.issuer}
+                </span>
                 <span className="mt-2.5 self-start border-b border-line-strong pb-px text-[13px] text-ink-2 transition-colors duration-200 group-hover:border-ink group-hover:text-ink">
-                  {ui.skills.verify}
+                  {cert.badgeId ? ui.skills.verify : ui.skills.viewCertificate}
                 </span>
               </a>
             ))}

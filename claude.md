@@ -40,6 +40,7 @@ components.json         → config del CLI de shadcn (para los registries)
 public/
 ├── CV_Agustin_Avelino_Pineda_ES.pdf
 ├── CV_Agustin_Avelino_Pineda_EN.pdf
+├── Certificado_Schneider_Supply_Chain.pdf
 └── images/             → fotos de proyectos; bg/ para fondos SVG
 src/
 ├── main.jsx            → entrypoint
